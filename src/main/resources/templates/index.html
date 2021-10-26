@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>index</h1>
+
+<div th:if="${session.account!=null}">
+    <!--            //判断session中是否有account才显示-->
+    <span th:text="${session.account.username}" +"欢迎回来"></span><a href="/logout">退出</a>
+</div>
+<!--        判断是否有权限和角色，从而显示是否有跳转到某页面的链接-->
+<a href="/main">main</a><br/>
+<div shiro:hasPermission="manage">
+    <a href="/manage">manage</a><br/>
+</div>
+<div shiro:hasRole="administrator">
+    <a href="/administrator">administrator</a>
+</div>
+
+
+</body>
+</html>
